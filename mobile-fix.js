@@ -1,19 +1,30 @@
 /* [mod] Relationship Stories + Admin Toolkit for YourLife. */
 (() => {
   "use strict";
-  const MOD = {
-    id: "relationship-stories-admin",
-    name: "Relationship Stories + Admin Toolkit",
-    icon: "emoji/1f4ac.png",
-    src: "life-admin.js?v=1",
-    desc: "Recurring named rivals, ex-partner conversations and reconciliation, responsive layout polish, and optional single-player God Mode/admin controls.",
-  };
+  const MODS = [
+    {
+      id: "relationship-stories-admin",
+      name: "Relationship Stories + Admin Toolkit",
+      icon: "emoji/1f4ac.png",
+      src: "life-admin.js?v=1",
+      desc: "Recurring named rivals, ex-partner conversations and reconciliation, responsive layout polish, and optional single-player God Mode/admin controls.",
+    },
+    {
+      id: "admin-expansion",
+      name: "Advanced Admin Controls",
+      icon: "emoji/2699-fe0f.png",
+      src: "admin-plus.js?v=1",
+      desc: "Edit all numeric character stats, money, career details, friends and other relationships, social account counts, and export a save backup. Local single-player tools.",
+    },
+  ];
 
   function register() {
     const loader = window.MOD_LOADER;
     if (!loader || !Array.isArray(loader.MODS) || typeof loader.load !== "function") return setTimeout(register, 120);
-    if (!loader.MODS.some((m) => m.id === MOD.id)) loader.MODS.push(MOD);
-    if (loader.isOn(MOD)) loader.load(MOD);
+    MODS.forEach((mod) => {
+      if (!loader.MODS.some((m) => m.id === mod.id)) loader.MODS.push(mod);
+      if (loader.isOn(mod)) loader.load(mod);
+    });
   }
   register();
 
